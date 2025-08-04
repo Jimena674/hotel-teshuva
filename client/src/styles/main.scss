@@ -1,12 +1,14 @@
-// functions (necesarios para manipular mapas)
-@import "bootstrap/scss/functions";
-// variables (necesarias si usas breakpoints o colores)
-@import "bootstrap/scss/variables";
-// Importar variables personalizadas
+@use "./custom" as custom;
+@use "bootstrap" as *;
 
 // utility API
-
-@import "_custom.scss";
+// @use "_custom.scss" as *;
+// @use "bootstrap" as *;
+// functions (necesarios para manipular mapas)
+// @use "bootstrap/scss/functions";
+// variables (necesarias si usas breakpoints o colores)
+// @import "bootstrap/scss/variables";
+// Importar variables personalizadas
 
 // Formato de columnas en las tablas en los modal del dashboard administrativo
 .cell-medium {
@@ -73,7 +75,7 @@
 // Estilo del submenú en el sidebar del dashboard
 .submenu .nav-link {
   font-size: 0.9rem;
-  color: $tertiary-container;
+  color: custom.$tertiary-container;
 }
 
 // Estilos de Botones
@@ -81,9 +83,9 @@
   border-radius: 0%;
   text-decoration: none;
   &.navbar-btn:hover {
-    background-color: $surface-container;
+    background-color: custom.$surface-container;
     border-bottom-width: 0.25em;
-    border-bottom-color: $primary;
+    border-bottom-color: custom.$primary;
   }
 }
 
@@ -91,33 +93,33 @@
   border-radius: 0.25rem;
   text-decoration: none;
   &.booking-form-btn:hover {
-    background-color: $surface-container;
-    color: $primary;
+    background-color: custom.$surface-container;
+    color: custom.$primary;
   }
 }
 
 .solid-btn-primary {
   border-radius: 0.25rem;
-  background-color: $primary;
-  color: $on-primary;
+  background-color: custom.$primary;
+  color: custom.$on-primary;
   &.solid-btn:hover {
-    background-color: $primary-container;
-    color: $on-primary-container;
+    background-color: custom.$primary-container;
+    color: custom.$on-primary-container;
   }
 }
 
 .solid-btn-tertiary {
   border-radius: 0.25rem;
-  background-color: $tertiary-container;
-  color: $on-primary-container;
+  background-color: custom.$tertiary-container;
+  color: custom.$on-primary-container;
   &.solid-btn-tertiary:hover {
-    background-color: $surface-container;
-    color: $on-background;
+    background-color: custom.$surface-container;
+    color: custom.$on-background;
   }
 }
 
 .signin-card {
-  background-color: $surface-bright;
+  background-color: custom.$surface-bright;
 }
 
 // Estilos de textos
