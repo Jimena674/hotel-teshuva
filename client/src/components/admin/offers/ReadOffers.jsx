@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import AlertMessage from "../../common/AlertMessage";
-import { formatToLocalDate } from "../../../utils/FormatDateUtils";
+import { formatToLocalDate } from "../../../utils/formatDateUtils";
 import OfferStatusColor from "../../common/OfferStatusColor";
 import DeleteOffer from "./DeleteOffer";
 const apiUrl = import.meta.env.VITE_API_URL;
