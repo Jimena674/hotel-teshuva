@@ -27,6 +27,11 @@ app.get("/", (req, res) => {
   res.send("Backend corriendo correctamente.");
 });
 
+// Endpoint para obtener el host público de Railway
+app.get("/test-db-host", (req, res) => {
+  res.send({ dbHost: process.env.DB_HOST });
+});
+
 app.use("/api/user", userRoutes);
 app.use("/api/room", roomRoutes);
 app.use("/api/booking", bookingRoutes);
