@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import AlertMessage from "../common/AlertMessage";
 import BookingStatusColor from "../common/BookingStatusColor";
-import { formatToLocalDate } from "../../utils/FormatDateUtils";
-import { formatDateForInput } from "../../utils/FormatDateUtils";
+import { formatToLocalDate } from "../../utils/formatDateUtils";
+import { formatDateForInput } from "../../utils/formatDateUtils";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function BookingsAdmin() {
