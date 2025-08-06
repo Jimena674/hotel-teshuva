@@ -22,6 +22,11 @@ app.use(cors(corsOptions));
 
 app.use(express.json()); // Parsear las request en formato JSON
 app.use(express.urlencoded({ extended: true }));
+
+app.get("/", (req, res) => {
+  res.send("Backend corriendo correctamente.");
+});
+
 app.use("/api/user", userRoutes);
 app.use("/api/room", roomRoutes);
 app.use("/api/booking", bookingRoutes);
