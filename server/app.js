@@ -13,6 +13,13 @@ require("./config/db");
 const app = express(); // Crear una instancia de express
 dotenv.config(); // Traer las variebles de entorno de env
 
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN || "*",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 app.use(
   cors({
     methods: ["GET", "POST", "PUT", "DELETE"],
