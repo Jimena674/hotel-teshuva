@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "../common/Button";
 import { Link } from "react-router-dom";
+const apiURL = import.meta.env.VITE_API_URL;
 
 export default function OfferCard({ offer }) {
   // Estados para consultar la habitación
@@ -10,7 +11,7 @@ export default function OfferCard({ offer }) {
   const readOffer = async () => {
     try {
       // Consulta a BD
-      const res = await fetch(`/api/offer/${id_offer}`);
+      const res = await fetch(`${apiURL}/api/offer/${id_offer}`);
       // Parsear la respuesta a JSON
       const data = await res.json();
       console.log("🔄 Respuesta del backend:", data);

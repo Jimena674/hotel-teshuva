@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AlertMessage from "../../common/AlertMessage";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function DeleteOffer({ offer, onClose, onDeleteSuccess }) {
   // Estados para eliminar una oferta
@@ -9,12 +10,9 @@ export default function DeleteOffer({ offer, onClose, onDeleteSuccess }) {
   /** Función que se comunica con el backend */
   const saveDeleteOffer = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:4000/api/offer/${offer.id_offer}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const res = await fetch(`${apiUrl}/api/offer/${offer.id_offer}`, {
+        method: "DELETE",
+      });
       const data = await res.json();
       if (res.ok) {
         setMessageType("success");

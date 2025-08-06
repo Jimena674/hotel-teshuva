@@ -4,6 +4,7 @@ import ButtonIcon from "../components/common/ButtonIcon";
 import Button from "../components/common/Button";
 import { useState } from "react";
 import AlertMessage from "../components/common/AlertMessage";
+const apiURL = import.meta.env.VITE_API_URL;
 
 export default function SingUp() {
   // Estado para registrar un usuario
@@ -27,7 +28,7 @@ export default function SingUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:4000/api/user/register", {
+      const res = await fetch(`${apiURL}/api/user/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

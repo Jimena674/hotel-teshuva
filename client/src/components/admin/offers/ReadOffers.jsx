@@ -3,6 +3,7 @@ import AlertMessage from "../../common/AlertMessage";
 import { formatToLocalDate } from "../../../utils/FormatDateUtils";
 import OfferStatusColor from "../../common/OfferStatusColor";
 import DeleteOffer from "./DeleteOffer";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function ReadOffers() {
   //Estados para obtener las ofertas existentes
@@ -15,7 +16,7 @@ export default function ReadOffers() {
   useEffect(() => {
     const fetchOffers = async () => {
       try {
-        const res = await fetch("http://localhost:4000/api/offer/");
+        const res = await fetch(`${apiUrl}/api/offer/`);
         const data = await res.json();
         setReadOffers(data);
       } catch (error) {
@@ -30,7 +31,7 @@ export default function ReadOffers() {
   }, []);
 
   const fetchOffers = async () => {
-    const res = await fetch("http://localhost:4000/api/offer/");
+    const res = await fetch(`${apiUrl}/api/offer/`);
     const data = await res.json();
     setReadOffers(data);
   };

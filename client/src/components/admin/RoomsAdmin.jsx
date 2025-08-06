@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AlertMessage from "../common/AlertMessage";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function RoomsAdmin() {
   //Estado para traer las habitaciones de la base de datos
@@ -12,7 +13,7 @@ export default function RoomsAdmin() {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const res = await fetch("http://localhost:4000/api/room/");
+        const res = await fetch(`${apiUrl}/api/room/`);
         const data = await res.json();
         console.log("Datos recibidos:", data);
         setRooms(data);
@@ -34,7 +35,7 @@ export default function RoomsAdmin() {
   useEffect(() => {
     const fetchFacilities = async () => {
       try {
-        const res = await fetch("http://localhost:4000/api/facility/");
+        const res = await fetch(`${apiUrl}/api/facility/`);
         const data = await res.json();
         console.log("Los servicios de las habitaciones son: ", data);
         setFacilities(data);
@@ -69,7 +70,7 @@ export default function RoomsAdmin() {
     /** Función para traer los datos de las habitaciones para actualizar la tabla */
   }
   const fetchRooms = async () => {
-    const res = await fetch(`http://localhost:4000/api/room/`);
+    const res = await fetch(`${apiUrl}/api/room/`);
     const data = await res.json();
     setRooms(data);
   };
@@ -80,7 +81,7 @@ export default function RoomsAdmin() {
   const saveRoom = async () => {
     try {
       //Enviar datos y solicitar respuesta del backend
-      const res = await fetch(`http://localhost:4000/api/room/new`, {
+      const res = await fetch(`${apiUrl}/api/room/new`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -130,7 +131,7 @@ export default function RoomsAdmin() {
   const readRoom = async (id_room) => {
     try {
       // Recibir los datos del backend
-      const res = await fetch(`http://localhost:4000/api/room/${id_room}`);
+      const res = await fetch(`${apiUrl}/api/room/${id_room}`);
       // Parseo de los datos a json
       const data = await res.json();
       setReadedRoom(data);
@@ -171,7 +172,7 @@ export default function RoomsAdmin() {
 
   const updateRoom = async (id_room) => {
     try {
-      const res = await fetch(`http://localhost:4000/api/room/${id_room}`);
+      const res = await fetch(`${apiUrl}/api/room/${id_room}`);
       const data = await res.json();
       setActualRoomUpdate(data);
       setUpdatedRoom({
@@ -223,13 +224,10 @@ export default function RoomsAdmin() {
         formData.append("newPhoto", updatedRoom.newPhoto);
       }
 
-      const res = await fetch(
-        `http://localhost:4000/api/room/${updatedRoom.id_room}`,
-        {
-          method: "PUT",
-          body: formData,
-        }
-      );
+      const res = await fetch(`${apiUrl}/api/room/${updatedRoom.id_room}`, {
+        method: "PUT",
+        body: formData,
+      });
 
       if (res.ok) {
         const data = await res.json();
@@ -292,12 +290,9 @@ export default function RoomsAdmin() {
   const saveDeleteRoom = async (room) => {
     try {
       // Llamar a la función del backend
-      const res = await fetch(
-        `http://localhost:4000/api/room/${room.room_number}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const res = await fetch(`${apiUrl}/api/room/${room.room_number}`, {
+        method: "DELETE",
+      });
 
       // Parsear la respuesta
       const data = await res.json();

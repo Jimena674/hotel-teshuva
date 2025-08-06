@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Button from "../common/Button";
 import AlertMessage from "../common/AlertMessage";
 import ModalBookingDetail from "../common/ModalBookingDetail";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const ConsultarReserva = () => {
   // Estado para el modal del formulario
@@ -18,7 +19,7 @@ const ConsultarReserva = () => {
     /** Función para el modal de la consulta */
   }
   const readBooking = async (code) => {
-    const url = `/api/booking/${code}`;
+    const url = `${apiUrl}/api/booking/${code}`;
     console.log("🌐 Consultando:", url);
     if (!code) {
       setMessageType("error");

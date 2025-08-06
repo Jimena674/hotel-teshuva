@@ -3,6 +3,7 @@ import AlertMessage from "../common/AlertMessage";
 import BookingStatusColor from "../common/BookingStatusColor";
 import { formatToLocalDate } from "../../utils/FormatDateUtils";
 import { formatDateForInput } from "../../utils/FormatDateUtils";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function BookingsAdmin() {
   // Estado para obtener todas las reservas
@@ -17,7 +18,7 @@ export default function BookingsAdmin() {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/api/booking/`);
+        const res = await fetch(`${apiUrl}/api/booking/`);
         if (!res.ok) {
           throw new Error("Error en la respuesta del servidor");
         }
@@ -58,7 +59,7 @@ export default function BookingsAdmin() {
   }
 
   const fetchBookings = async () => {
-    const res = await fetch(`http://localhost:4000/api/booking/`);
+    const res = await fetch(`${apiUrl}/api/booking/`);
     const data = await res.json();
     setBookings(data);
     console.log(bookings);
@@ -69,7 +70,7 @@ export default function BookingsAdmin() {
   }
   const saveNewBooking = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/booking/new`, {
+      const res = await fetch(`${apiUrl}/api/booking/new`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -121,7 +122,7 @@ export default function BookingsAdmin() {
       return res.status(404).json({ message: "El código no existe." });
     }
     try {
-      const res = await fetch(`http://localhost:4000/api/booking/${code}`);
+      const res = await fetch(`${apiUrl}/api/booking/${code}`);
       const data = await res.json();
       setSelectedBooking(data);
       setShowModalRead(true);
@@ -144,7 +145,7 @@ export default function BookingsAdmin() {
 
   const updateBooking = async (code) => {
     try {
-      const res = await fetch(`http://localhost:4000/api/booking/${code}`);
+      const res = await fetch(`${apiUrl}/api/booking/${code}`);
       const data = await res.json();
       setActualBooking(data);
       setShowModalUpdate(true);
@@ -174,14 +175,11 @@ export default function BookingsAdmin() {
 
   const saveUpdate = async (booking) => {
     try {
-      const res = await fetch(
-        `http://localhost:4000/api/booking/${booking.code}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(booking),
-        }
-      );
+      const res = await fetch(`${apiUrl}/api/booking/${booking.code}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(booking),
+      });
       const data = await res.json();
       if (res.ok) {
         setMessageUpdateBooking("✅ Reserva actualizada.");

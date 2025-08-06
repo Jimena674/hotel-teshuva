@@ -9,6 +9,7 @@ import IconText from "../components/common/IconText";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import AlertMessage from "../components/common/AlertMessage";
+const apiURL = import.meta.env.VITE_API_URL;
 
 export default function Home() {
   const location = useLocation();
@@ -36,7 +37,7 @@ export default function Home() {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const res = await fetch(`/api/room/`);
+        const res = await fetch(`${apiURL}/api/room/`);
         const data = await res.json();
         console.log("Datos recibidos:", data);
         if (res.ok) {
@@ -71,7 +72,7 @@ export default function Home() {
     const fetchOffers = async () => {
       try {
         // Consulta a base de datos
-        const res = await fetch(`/api/offer/`);
+        const res = await fetch(`${apiURL}/api/offer/`);
         // Parsear la respuesta a JSON
         const data = await res.json();
         console.log("Datos recibidos:", data);
