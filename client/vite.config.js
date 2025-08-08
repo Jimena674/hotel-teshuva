@@ -16,4 +16,7 @@ export default defineConfig({
   build: {
     outDir: "dist",
   },
+  preview: {
+    allowedHosts: ["hotel-teshuva-client-production.up.railway.app"],
+  },
 });
