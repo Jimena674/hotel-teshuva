@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "cross-env vite preview --port $PORT --host",
+    "preview": "vite preview --port $PORT --host",
     "preview-local": "vite preview --port 4173",
     "test": "vitest"
   },
