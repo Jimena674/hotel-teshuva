@@ -140,7 +140,7 @@ const getAllUsers = async (req, res) => {
     const users = await userModel.getAllUsers();
     res.status(200).json(users);
   } catch (error) {
-    console.error("Error al obtener usuarios: ", error);
+    console.error("Error en la ruta /api/user: ", error);
     res.status(500).json({ message: "Error del servidor." });
   }
 };
@@ -198,7 +198,7 @@ const readUser = async (req, res) => {
     }
     res.json(user);
   } catch (error) {
-    console.error("Error al obtener los datos del usuario : ", error);
+    console.error("Error en la ruta /api/user: ", error);
     res.status(500).json({ message: "Error del servidor." });
   }
 };

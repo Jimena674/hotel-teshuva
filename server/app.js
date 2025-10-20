@@ -14,20 +14,24 @@ const app = express(); // Crear una instancia de express
 dotenv.config(); // Traer las variebles de entorno de env
 
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN || "*",
+  origin: process.env.CORS_ORIGIN,
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"], // Permitir peticiones desde otro origen
 };
-
 app.use(cors(corsOptions));
-
-app.use(
-  cors({
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  })
-); // Permitir peticiones desde otro origen
 
 app.use(express.json()); // Parsear las request en formato JSON
 app.use(express.urlencoded({ extended: true }));
+
+app.get("/", (req, res) => {
+  res.send("Backend corriendo correctamente.");
+});
+
+// Endpoint para obtener el host público de Railway
+app.get("/test-db-host", (req, res) => {
+  res.send({ dbHost: process.env.DB_HOST });
+});
+
 app.use("/api/user", userRoutes);
 app.use("/api/room", roomRoutes);
 app.use("/api/booking", bookingRoutes);
@@ -36,6 +40,6 @@ app.use("/api/facility", facilityRoutes);
 
 // Definir el puerto en el que se ejecutará el servidor
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });

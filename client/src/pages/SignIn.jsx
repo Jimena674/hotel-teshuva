@@ -6,6 +6,7 @@ import ButtonIcon from "../components/common/ButtonIcon";
 import AlertMessage from "../components/common/AlertMessage";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+const apiURL = import.meta.env.VITE_API_URL;
 
 export default function SingIn() {
   // Estados para enviar los datos del frontend al backend
@@ -21,7 +22,7 @@ export default function SingIn() {
 
     try {
       // Solicitar respuesta del backend
-      const res = await fetch("http://localhost:4000/api/user/login", {
+      const res = await fetch(`${apiURL}/api/user/login`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ email, password }),

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "../common/Button";
 import ModalRoomDetail from "../common/ModalRoomDetail";
 import AlertMessage from "../common/AlertMessage";
+const apiURL = import.meta.env.VITE_API_URL;
 
 export default function RoomCard({ room }) {
   // Estados para abrir el modal y consultar la habitación
@@ -20,7 +21,7 @@ export default function RoomCard({ room }) {
       console.log("No se puede leer el id_room.");
     }
     try {
-      const res = await fetch(`/api/room/${id_room}`);
+      const res = await fetch(`${apiURL}/api/room/${id_room}`);
       const data = await res.json();
       console.log("🔄 Respuesta del backend:", data);
 

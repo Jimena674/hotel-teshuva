@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"; //Hooks de react
 import AlertMessage from "../common/AlertMessage";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function UsersAdmin() {
   // Estado para el total de usuarios registrados
@@ -12,7 +13,7 @@ export default function UsersAdmin() {
   useEffect(() => {
     const fetchTotal = async () => {
       try {
-        const res = await fetch("http://localhost:4000/api/user/count"); // Se almacena la respuesta del backend
+        const res = await fetch(`${apiUrl}/api/user/count`); // Se almacena la respuesta del backend
         const data = await res.json(); // Se parsea la respuesta del servidor en formato JSON
         setTotalUsers(data.total);
       } catch (error) {
@@ -34,7 +35,7 @@ export default function UsersAdmin() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch("http://localhost:4000/api/user/");
+        const res = await fetch(`${apiUrl}/api/user/`);
         const data = await res.json();
         setUsers(data);
       } catch (error) {
@@ -102,7 +103,7 @@ export default function UsersAdmin() {
   }
 
   const fetchUsers = async () => {
-    const res = await fetch("http://localhost:4000/api/user/");
+    const res = await fetch(`${apiUrl}/api/user/`);
     const data = await res.json();
     setUsers(data);
   };
@@ -114,7 +115,7 @@ export default function UsersAdmin() {
   const saveRegister = async () => {
     try {
       // Solicitar respuesta del backend
-      const res = await fetch(`http://localhost:4000/api/user/register`, {
+      const res = await fetch(`${apiUrl}/api/user/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -183,12 +184,9 @@ export default function UsersAdmin() {
   const saveDelete = async (user) => {
     try {
       // Solicitar respuesta del backend
-      const res = await fetch(
-        `http://localhost:4000/api/user/${user.id_number}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const res = await fetch(`${apiUrl}/api/user/${user.id_number}`, {
+        method: "DELETE",
+      });
       // Parsear la respuesta del servidor en formato json
       const data = await res.json();
       if (res.ok) {
@@ -222,7 +220,7 @@ export default function UsersAdmin() {
   const readUser = async (id_number) => {
     try {
       // Llamar a la función del backend
-      const res = await fetch(`http://localhost:4000/api/user/${id_number}`);
+      const res = await fetch(`${apiUrl}/api/user/${id_number}`);
       const data = await res.json();
 
       setSelectUserRead(data); //Información que aparece en el modal
@@ -247,7 +245,7 @@ export default function UsersAdmin() {
   const updateUser = async (id) => {
     try {
       // Solicitar respuesta del backend
-      const res = await fetch(`http://localhost:4000/api/user/${id}`);
+      const res = await fetch(`${apiUrl}/api/user/${id}`);
       // Parsear respuesta a JSON
       const data = await res.json();
       // Abrir el modal
@@ -279,7 +277,7 @@ export default function UsersAdmin() {
   const saveUpdate = async (user) => {
     try {
       // Solicitar la respuesta del backend
-      const res = await fetch(`http://localhost:4000/api/user/${user.id}`, {
+      const res = await fetch(`${apiUrl}/api/user/${user.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user),
